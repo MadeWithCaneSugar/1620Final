@@ -53,6 +53,7 @@ const contactsList = [
 
 const contactAreaShell = document.getElementById("display_all_contacts")
 const singleContactAreaShell = document.getElementById("display_single_contact")
+const closeButton = `<button id="closeButton">close</button>`
 
 //Adding the contacts to the all contacts area
 for(item in contactsList) {
@@ -63,9 +64,15 @@ for(item in contactsList) {
   currentContact.insertAdjacentHTML("beforeend",`<img class="portrait" src="img/` + contactsList[item].image + `" alt="a picture of ` + contactsList[item].name + `" style="width:75px;height:75px;"></img>`)
   currentContact.addEventListener("click", (evt) => {
     singleContactAreaShell.innerHTML = '';
+    //I know tyhat using br elements is hacky, but I don't have time to use a better solution at this point
     singleContactAreaShell.insertAdjacentHTML("beforeend", contactsList[currentContact.id.substring(7)].name + "<br></br>")
     singleContactAreaShell.insertAdjacentHTML("beforeend", contactsList[currentContact.id.substring(7)].phone + "<br></br>")
     singleContactAreaShell.insertAdjacentHTML("beforeend", contactsList[currentContact.id.substring(7)].email + "<br></br>")
-    singleContactAreaShell.insertAdjacentHTML("beforeend", `<img class="portrait" src="img/` + contactsList[currentContact.id.substring(7)].image + `" alt="a picture of ` + contactsList[currentContact.id.substring(7)].name + `" style="width:125px;height:125px;"></img>`)
+    singleContactAreaShell.insertAdjacentHTML("beforeend", `<img class="portrait" src="img/` + contactsList[currentContact.id.substring(7)].image + `" alt="a picture of ` + contactsList[currentContact.id.substring(7)].name + `" style="width:125px;height:125px;"></img>` + "<br></br>")
+    singleContactAreaShell.insertAdjacentHTML("beforeend", closeButton)
+    closeButtonObject = document.getElementById("closeButton")
+    closeButtonObject.addEventListener("click", (evt) => {
+      singleContactAreaShell.innerHTML = '';
+    })
   })
 }
