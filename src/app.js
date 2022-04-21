@@ -51,4 +51,15 @@ const contactsList = [
   },
 ]
 
-// Your code goes here
+const contactAreaShell = document.getElementById("display_all_contacts")
+
+//Adding the contacts to the all contacts area
+for(item in contactsList) {
+  let singleContact = `<div id="contact` + item + `"></div>`
+  contactAreaShell.insertAdjacentHTML("beforeend", singleContact)
+  let currentContact = document.getElementById("contact" + item)
+  currentContact.insertAdjacentHTML("beforeend", contactsList[item].name)
+  currentContact.insertAdjacentHTML("beforeend",`<img class="portrait" src="img/` + contactsList[item].image + `" alt="a picture of ` + contactsList[item].name + `" style="width:75px;height:75px;"></img>`)
+  console.log(contactsList[item])
+}
+
